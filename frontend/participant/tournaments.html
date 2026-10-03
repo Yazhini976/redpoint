@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Tournaments — RedPoint</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <aside class="app-sidebar">
+      <a href="/participant/dashboard.html" class="sidebar-brand">
+        <i class="bi bi-circle-fill"></i>
+        <span>RedPoint</span>
+        <span class="badge bg-primary">STUDENT</span>
+      </a>
+
+      <ul class="sidebar-nav">
+        <li class="nav-item"><a href="/participant/dashboard.html" class="nav-link" data-page="dashboard"><i class="bi bi-speedometer2"></i><span>Dashboard</span></a></li>
+        <li class="nav-item"><a href="/participant/tournaments.html" class="nav-link" data-page="tournaments"><i class="bi bi-trophy"></i><span>Tournaments</span></a></li>
+        <li class="nav-item"><a href="/participant/registrations.html" class="nav-link" data-page="registrations"><i class="bi bi-bookmark-check"></i><span>My Registrations</span></a></li>
+        <li class="nav-item"><a href="/participant/schedule.html" class="nav-link" data-page="schedule"><i class="bi bi-calendar3"></i><span>Match Schedule</span></a></li>
+        <li class="nav-item"><a href="/participant/results.html" class="nav-link" data-page="results"><i class="bi bi-award"></i><span>Results</span></a></li>
+        <li class="nav-item"><a href="/participant/leaderboard.html" class="nav-link" data-page="leaderboard"><i class="bi bi-bar-chart-line"></i><span>Leaderboard</span></a></li>
+        <li class="nav-item"><a href="/participant/profile.html" class="nav-link" data-page="profile"><i class="bi bi-person-circle"></i><span>Profile</span></a></li>
+        <li class="nav-item mt-3 pt-2 border-top border-secondary border-opacity-25">
+          <a href="#" class="nav-link text-danger js-logout-btn"><i class="bi bi-box-arrow-left"></i><span>Logout</span></a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar js-user-avatar">S</div>
+          <div class="user-info">
+            <div class="user-name js-user-name">Student Participant</div>
+            <div class="user-role">Athlete</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="header-toggle-btn"><i class="bi bi-list"></i></button>
+          <h1 class="header-title">Available Tournaments</h1>
+        </div>
+        <div>
+          <a href="/participant/registrations.html" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-bookmark-check me-1"></i> View My Registrations
+          </a>
+        </div>
+      </header>
+
+      <div class="content-body">
+        <div class="alert alert-info border-info-subtle d-flex align-items-center gap-2 mb-4">
+          <i class="bi bi-info-circle-fill fs-5"></i>
+          <span>
+            Click <strong>Register Now</strong> on any upcoming tournament to enroll. Registration is tracked securely in real-time.
+          </span>
+        </div>
+
+        <!-- Tournaments Grid -->
+        <div class="row" id="tournaments-card-container">
+          <div class="col-12 text-center py-5 text-muted">
+            <span class="spinner-border spinner-border-sm me-2"></span>Loading available tournaments...
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/participant.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.RedPointAuth.requireAuth('PARTICIPANT')) return;
+      window.RedPointCommon.setupLayout('tournaments', 'PARTICIPANT');
+      window.RedPointParticipant.initTournaments();
+    });
+  </script>
+</body>
+</html>
